@@ -4,21 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pedra, Papel e Tesoura</title>
+	<link rel="stylesheet" href="style.css">
     </head>
 <body>
     <main class="jogo-container">
         <h1>Stone, Rock and Scissors</h1>
-        
+		<h2>Make Your Move.</h2>
         <div class="escolhas">
-            <button id="pedra">🪨 Pedra</button>
-            <button id="papel">📄 Papel</button>
-            <button id="tesoura">✂️ Tesoura</button>
-        </div>
+    		<button id="pedra" class="btn-escolha">
+        		<span class="icone">✊🏽</span>
+        		<span class="nome-escolha">Pedra</span>
+    		</button>
+
+    		<button id="papel" class="btn-escolha">
+        		<span class="icone">✋🏽</span>
+        		<span class="nome-escolha">Papel</span>
+    		</button>
+
+    		<button id="tesoura" class="btn-escolha">
+        		<span class="icone">✌🏽</span>
+        		<span class="nome-escolha">Tesoura</span>
+    		</button>
+		</div>
 
         <div class="placar">
-    		<span>Jogador: <strong id="pontos-jogador">0</strong></span>
-    		<span> VS </span>
-   			<span>PC: <strong id="pontos-computador">0</strong></span>
+    		<span class="icone">👨🏽Jogador: <strong id="pontos-jogador">0</strong></span>
+    		<span clas="icone">⚔️git</span>
+   			<span class="icone">PC💻: <strong id="pontos-computador">0</strong></span>
 		</div>
 		<div id="status-jogo" style="margin-top: 20px;">Escolha uma opção para começar!</div>
     </main>

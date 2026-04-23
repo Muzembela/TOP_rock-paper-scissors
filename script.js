@@ -1,5 +1,5 @@
 
-// 1. VAr Glob
+// Muze_Vars
 let humanScore = 0;
 let computerScore = 0;
 let tieScore = 0;
@@ -36,7 +36,7 @@ const displayJogador = document.querySelector("#pontos-jogador");
 const displayComputador = document.querySelector("#pontos-computador");
 
 function playgame(escolhaDoUsuario) {
-    // 1. A TRAVA: Impede que o jogo continue se alguém já venceu
+
     if (humanScore === 5 || computerScore === 5) {
         return; 
     }
@@ -45,29 +45,26 @@ function playgame(escolhaDoUsuario) {
     const resultadoTexto = playRound(escolhaDoUsuario, escolhaPC);
     round++;
 
-    // 2. ATUALIZAÇÃO DO PLACAR (Estilo Futebol - Instantâneo)
+
     displayJogador.textContent = humanScore;
     displayComputador.textContent = computerScore;
     painelMSM.textContent = `Rodada ${round}: ${resultadoTexto}`;
 
-    // 3. CHECAGEM DE VITÓRIA (Quem chegou a 5 primeiro?)
     if (humanScore === 5 || computerScore === 5) {
         setTimeout(() => {
             let veredito = "";
             if (humanScore > computerScore) {
-                veredito = "🏆 VITÓRIA DO JOGADOR!";
+                veredito = "🏆 VITÓRIA DO JOGADOR! 👨🏽";
                 painelMSM.style.color = "green";
             } else {
-                veredito = "🚩 VITÓRIA DO COMPUTADOR!";
+                veredito = "💻 VITÓRIA DO COMPUTADOR!";
                 painelMSM.style.color = "red";
             }
-
-            // Exibe o placar final cravado em 5
             painelMSM.textContent = `${veredito} Final: ${humanScore}-${computerScore} (${tieScore} empates)`;
         }, 1000); 
     }
 }
-// Ouvintes de Evento
+// Muze_Ouvintes de Evento
 document.querySelector("#pedra").addEventListener("click", () => playgame("pedra"));
 document.querySelector("#papel").addEventListener("click", () => playgame("papel"));
 document.querySelector("#tesoura").addEventListener("click", () => playgame("tesoura"));
