@@ -8,4 +8,11 @@ Building the popular rock-paper-scissors game with JS, HTML, and CSS, using know
 </p>
 
 ## 🚀 Sobre o Projeto
-...
+Destaques Técnicos:
+JavaScript (DOM): Motor do jogo que processa as escolhas, calcula vitórias e atualiza o placar dinamicamente sem refresh.
+
+CSS Interativo: Interface limpa e totalmente responsiva, garantindo uma boa experiência em qualquer dispositivo.
+
+Clean Code: Estrutura organizada seguindo as melhores práticas sugeridas pelo The Odin Project.
+Onde testar: 🚀 Live Demo: https://lnkd.in/eWSmkh8y
+📂 Repositório: https://lnkd.in/eH49-hh4
