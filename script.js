@@ -1,91 +1,69 @@
 
-console.log("Hello World")
+// 1. VAr Glob
 let humanScore = 0;
 let computerScore = 0;
+let tieScore = 0;
+let round = 0;
 
-function getComputerChoice()
-{
-	const choices = ["pedra", "papel", "tesoura"]
-	const compchoice = choices[Math.floor(Math.random()*choices.length)]
-	return compchoice
-}	
 
-function getHumanChoice() {
-    let hmchoice = prompt("Escolha Uma Opção (Pedra, Papel ou Tesoura):");
-    
-    hmchoice = hmchoice.toLowerCase();
-
-    if (hmchoice === "pedra" || hmchoice === "papel" || hmchoice === "tesoura") {
-        return hmchoice;
-    } else {
-        console.log("Opção inválida! Tente novamente.");
-        return getHumanChoice();
-    }
+function getComputerChoice() {
+    const choices = ["pedra", "papel", "tesoura"];
+    return choices[Math.floor(Math.random() * choices.length)];
 }
 
 
 function playRound(playerSelection, computerSelection) {
-
     if (playerSelection === computerSelection) {
-        console.log(`Empate! Ambos escolheram ${playerSelection}.`);
-        return;
+        tieScore++;
+        return `Empate! Ambos escolheram ${playerSelection}.`;
     }
-
     if (
         (playerSelection === "pedra" && computerSelection === "tesoura") ||
         (playerSelection === "papel" && computerSelection === "pedra") ||
         (playerSelection === "tesoura" && computerSelection === "papel")
     ) {
         humanScore++;
-        console.log(`Você Venceu! ${playerSelection} ganha de ${computerSelection}.`);
+        return `Você Venceu! ${playerSelection} ganha de ${computerSelection}.`;
     } else {
         computerScore++;
-        console.log(`Você Perdeu! ${computerSelection} ganha de ${playerSelection}.`);
+        return `Você Perdeu! ${computerSelection} ganha de ${playerSelection}.`;
     }
 }
 
-function playGame()
-{
-	
-	let round = 0;
-	while (round < 5)
-	{
-		const human = getHumanChoice();
-		const comp = getComputerChoice();
-		playRound(human, comp)
-		round++;
-	}
-}
-function vencedor()
-{
-	if (humanScore == computerScore)
-	{
-		console.log("Player->", humanScore, "Computer->", computerScore)
-		console.log("Estao Empatados!")
-		return ;
-	}
-	else if (humanScore > computerScore)
-	{
-		console.log("Player->", humanScore, "Computer->", computerScore)
-		console.log("Voce Venceu. Parabens!")
-		return ;
-	}
-	else
-	{
-		console.log("Player->", humanScore, "Computer->", computerScore)
-		console.log("Voce Perdeu")
-		return;
+
+const painelMSM = document.querySelector("#status-jogo");
+const displayJogador = document.querySelector("#pontos-jogador");
+const displayComputador = document.querySelector("#pontos-computador");
+
+function jogar(escolhaDoUsuario) {
+    if (round >= 5) return; 
+
+    const escolhaPC = getComputerChoice();
+    const resultadoTexto = playRound(escolhaDoUsuario, escolhaPC);
+    round++;
+
+
+    displayJogador.textContent = humanScore;
+    displayComputador.textContent = computerScore;
+    
+
+    painelMSM.textContent = `Rodada ${round}: ${resultadoTexto}`;
+
+    if (round === 5) {
+
+        setTimeout(() => {
+            let veredito = "";
+            if (humanScore > computerScore) veredito = "🏆 VITÓRIA DO JOGADOR!";
+            else if (computerScore > humanScore) veredito = "🚩 VITÓRIA DO COMPUTADOR!";
+            else veredito = "🤝 EMPATE!";
+
+            painelMSM.textContent = `${veredito} Final: ${humanScore}-${computerScore} (${tieScore} empates)`;
+            painelMSM.style.color = "green";
+        }, 1200); 
 	}
 }
 
-// Execucao
-const human = getHumanChoice();
-const comp = getComputerChoice();
-
-console.log("Sua escolha:", human);
-console.log("Escolha do PC:", comp);
-playGame()
-console.log("--- PLACAR FINAL ---");
-console.log("Eu ->", humanScore);
-console.log("Comp ->", computerScore);
-vencedor()
+// Ouvintes de Evento
+document.querySelector("#pedra").addEventListener("click", () => jogar("pedra"));
+document.querySelector("#papel").addEventListener("click", () => jogar("papel"));
+document.querySelector("#tesoura").addEventListener("click", () => jogar("tesoura"));
