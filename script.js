@@ -1,4 +1,9 @@
 
+
+console.log(
+    "%cJogo desenvolvido por [Seu Nome] - 2026", 
+    "color: #2ecc71; font-weight: bold; font-size: 12px;"
+);
 // Muze_Vars
 let humanScore = 0;
 let computerScore = 0;
